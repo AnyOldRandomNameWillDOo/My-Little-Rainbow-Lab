@@ -1,0 +1,94 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Unknown </title></head><body>
+<h1 id="my-little-rainbow-lab">My Little Rainbow - Lab</h1>
+<h2 id="introduction">Introduction</h2>
+<p>In this lab, you're going to make a rainbow with HTML <code>&lt;div&gt;</code> elements. Through this process, you'll learn about HTML elements, CSS styling, CSS selectors, how color works in CSS and importing stylesheets.  That might sound like a lot but it isn't.</p>
+<p>Before you start, here's some basic info about HTML and CSS. Skip to <a href="#making-a-rainbow">Making a Rainbow</a> if you feel comfortable enough with HTML and CSS.</p>
+<h2 id="objectives">Objectives</h2>
+<p>You will be able to:
+<em> Describe the purpose of IDs in HTML
+</em> Add ID elements to HTML tags
+* Select and style HTML elements with CSS</p>
+<h2 id="html-basics">HTML Basics</h2>
+<p>Hyper Text Markup Language, or HTML, is a way to demarcate a document into different parts. Each part is <em>marked</em> by elements (using tags). Each element has its own special connotation that the browser uses to <em>render</em> the HTML document. Use this <a href="https://web.stanford.edu/group/csp/cs21/htmlcheatsheet.pdf">cheat sheet</a> on HTML elements for guidance.</p>
+<h2 id="elements">Elements</h2>
+<ul>
+<li>All begin with <code>&lt;</code> and end with <code>&gt;</code>, e.g., <code>&lt;div&gt;</code> (this last part is a tag).</li>
+<li>Most have an opening tag such as <code>&lt;div&gt;</code> and a closing tag <code>&lt;/div&gt;</code>.</li>
+<li>The <code>/</code> indicates to the browser that that tag is a closing tag.</li>
+<li>The element is everything between the tags and the tags themselves.</li>
+<li>Some tags are self-closing like the line break element <code>&lt;br&gt;</code>.</li>
+<li>Elements can have IDs and classes to aid the browser in finding specific tags.</li>
+<li>Must begin with a letter A-Z or a-z.</li>
+<li>Can be followed by: letters (<code>A-Za-z</code>), digits (<code>0-9</code>), hyphens (<code>-</code>), and underscores (<code>_</code>).</li>
+<li>IDs <strong>can</strong> only be used once per page, e.g.: <code>&lt;div id="this-special-div"&gt;&lt;/div&gt;</code>.</li>
+<li>Classes can be used as many times as you want, e.g.: <code>&lt;div class="a-less-special-div"&gt;&lt;/div&gt;</code>.</li>
+<li>Elements nested inside other elements are called children.</li>
+<li>Children inherit attributes from their parents.</li>
+<li>Don't nest everything. </li>
+<li>Elements next to one another are siblings.</li>
+<li>Siblings do not inherit from one another but are important for selecting in CSS.</li>
+</ul>
+<p>Here is an example of element relations:
+<code>html
+&lt;div&gt;  &lt;!-- the parent element --&gt;
+  &lt;p&gt;&lt;/p&gt;  &lt;!-- the first sibling element/the first child--&gt;
+  &lt;p&gt;&lt;/p&gt;  &lt;!-- the second sibling element/the second child --&gt;
+&lt;/div&gt;</code></p>
+<h2 id="css-basics">CSS Basics</h2>
+<p>Cascading Style Sheets, or CSS, is a language created to style an HTML document by telling the browser how specific elements should look. CSS does this by selecting elements based on their tag, ids, classes, or all of the above. The reason for CSS is the separation of concerns. You want HTML only to be concerned with how it displays and demarcates information, and we let CSS worry about how to make that information look pretty.</p>
+<h2 id="css-selectors">CSS selectors</h2>
+<ul>
+<li>They select elements to assign them styles.</li>
+<li><code>*</code> (wildcard) selects every element.</li>
+<li>An element, such as <code>div</code>, will select all elements of that type.</li>
+<li>They select an id like <code>#some-id</code></li>
+<li>Classes are selected like this <code>.some-class</code></li>
+<li>To select all children elements of a parent do something like this <code>div p</code></li>
+<li>To select multiple different elements separate them by commas like this <code>div, p, a</code></li>
+</ul>
+<p>Here's an example of CSS styling:</p>
+<p><code>CSS
+* {
+  color: red;  /* color in CSS refers to font color */
+}  /* all elements will have red font */</code></p>
+<h2 id="making-a-rainbow">Making a Rainbow</h2>
+<p>First off make sure you have <a href="https://github.com/learn-co-curriculum/dsc-my-little-rainbow-lab">forked</a> and cloned this repo. Next, create a new branch, and switch to it; it's <code>git checkout -b your_solution_branch_name</code> in case you forgot.</p>
+<p>In that directory, you'll see three files. <code>index.html</code>, <code>main.css</code>, and this <code>README.md</code>.  Open them in your text editor via your command line.  Also, open <code>index.html</code> in your browser; if everything is working correctly you should see a white page. Good job!</p>
+<h2 id="making-the-divs-visible">Making the Divs Visible</h2>
+<p>If you use the inspector or look at the file in your text editor, you'll see that the basic file structure is there.  So why can't we see anything?!?!?  That's because the divs have no styling on them right now.  And that's because we never told the browser to include a CSS file that would apply any styles. </p>
+<p>Let's fix this by adding the stylesheet to the <code>head</code> like so,
+<code>HTML
+&lt;head&gt;
+... 
+  &lt;link rel="stylesheet" type="text/css" href="main.css"&gt;
+...
+&lt;/head&gt;</code>
+The link is a self-closing tag that will create a relative path with the <code>href</code> attribute.  A relative path means the browser knows that the <code>main.css</code> file is in the same place as <code>index.html</code>.  The <code>head</code> is a hidden part of the page that tells the browser where to find any other files it needs to display the page correctly, the <code>title</code> for the tab, and any other possible important information.</p>
+<p>Now if you refresh the <code>index.html</code> page in your browser you should see an ugly black rainbow.  Gerd Jerb!</p>
+<p>Okay so you've got the basic outline because in the <code>main.css</code> all the <code>div</code> elements were selected and styled, but the colors are wrong because the default border color is black.  To fix this we need to learn a little bit more about colors, because while we could just set <code>color: red;</code> we should learn how to make colors without words.  We should just use numbers and not just any set of numbers, but numbers with base pair of 16 rather than base pair of 10 like we use every day.  These numbers are called hexadecimal numbers and we can use them to make colors.</p>
+<h2 id="some-stuff-you-should-know-about-hex-colors-and-web-colors-in-general">Some Stuff You Should Know About Hex Colors (and Web Colors in General).</h2>
+<p>Hex colors begin with <code>#</code> and are followed by, generally, 6 numbers, but some of these numbers are actually letters.  The lowest single-digit number in hex is 0 and the highest single-digit number is f.  This table might help to visualize what we mean by this.</p>
+<p><code>Decimal Numbers:      0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16
+Hexadecimal Numbers:  0, 1, 2, 3, 4, 5, 6, 7, 8, 9,  a,  b,  c,  d,  e,  f, 10</code></p>
+<p>Hex colors work by creating Red, Green, Blue (RGB) values.  Traditional RGB colors are on a scale of 0 to 255 for each of the three colors in the spectrum.  Hex colors are considered true colors since it can represent ~16 million colors, but your eye can only see 10 million of those.  So <code>#000000</code> translates to black since 0 reds, 0 green, 0 blues represents the absence of all colors, and <code>#ffffff</code> makes white since 255 reds, 255 greens, and 255 blues is the maximum of each of the colors.  </p>
+<p>Hex colors can be shortened to just three numbers when each RGB value is the same for each digit. So <code>#11dd99</code> can be written as <code>#1d9</code>.</p>
+<h2 id="coloring-the-rainbow">Coloring the Rainbow</h2>
+<p>To get roygbiv onto our rainbow we'll need seven hex colors.
+Red: <code>#f00</code>; Orange: <code>#ffa500</code>; Yellow: <code>#ff0</code>; Green: <code>#00bc3f</code>; Blue: <code>#06f</code>; Indigo: <code>#8a2be2</code>; Violet: <code>#d300c9</code></p>
+<p>With those colors, all we have to do next is select each div individually.  That is a perfect use for ids since they're meant to style one specific element only.  So that means we'll need to add an id for each div, so a logical name for each div would be the color that they have to be.  It could be something random, but good names make for semantic code. So let's give the outermost div the id red. We'll do this like so.
+<code>html
+&lt;div id="red"&gt;
+  ...
+&lt;/div&gt;</code></p>
+<p>And to give that id some CSS attributes we'll go into <code>main.css</code>, select the id, and mark its color as red like this.
+```css</p>
+<h1 id="red-this-selects-any-elements-with-the-red-id">red { /<em> this selects any elements with the red id </em>/</h1>
+<p>border-top-color: #f00;
+}
+```</p>
+<p>So to make sure the rainbow isn't so monochromatic you now need to repeat the above steps with the final six colors of the rainbow, and when you do you should have something like <a href="http://i0.kym-cdn.com/photos/images/original/000/118/087/2468904593_6a7c692ab6.jpg">this</a>.</p>
+<p class='util--hide'>View <a href='https://learn.co/lessons/my-little-rainbow'>My Little Rainbow</a> on Learn.co and start learning to code for free.</p>
+
+<h2 id="summary">Summary</h2>
+<p>Well done! In this lab, you independently modified HTML and CSS files in order to update a webpage. Specifically, you got some experience understanding and working with HTML IDs. You also used CSS to style HTML elements.</p>
+</body></html>
